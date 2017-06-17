@@ -1,0 +1,22 @@
+{
+  "name": "lasttimei_lamdbda",
+  "version": "1.0.0",
+  "description": "Code triggered by iot button.  Saves specific event",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/armandopadilla/lasttimei_lamdbda.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/armandopadilla/lasttimei_lamdbda/issues"
+  },
+  "homepage": "https://github.com/armandopadilla/lasttimei_lamdbda#readme",
+  "dependencies": {
+    "uuid": "^3.1.0"
+  }
+}
