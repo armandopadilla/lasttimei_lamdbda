@@ -1,11 +1,3 @@
-/**
- * LastTimeI lambda
- * Lambda invoked when AWS IoT triggers this lambda for a specific topic
- * which is registered to a button.  The code checks which button was pressed
- * using the serial number and associates the serial number to an action.  The action is then
- * stored in DynamoDB for later use.
- *
- */
 const AWS = require('aws-sdk')
 const uuidv1 = require('uuid/v1')
 
@@ -38,9 +30,9 @@ const getAction = (serialNumber) => {
  */
 const getPayload = (serialNumber, action) => ({
   Item: {
-    "id": { S: uuidv1() }, // For true randomness use v4.
+    "Id": { S: uuidv1() }, // For true randomness use v4.
     "SerialNumber": { S: serialNumber },
-    "Action": { S: action },
+    "ActionTaken": { S: action },
     "TimeStamp": { N: Date.now().toString() }
   },
   TableName: DYNAMODB_TABLE_NAME
@@ -61,6 +53,7 @@ exports.handler = (event, context, callback) => {
 
   // Generate the payload to save into Dynamo!
   const dbSavePayload = getPayload(serialNumber, action)
+  console.log("dbPayload", dbSavePayload)
 
   const DynamoDB = new AWS.DynamoDB()
   return DynamoDB.putItem(dbSavePayload).promise()
